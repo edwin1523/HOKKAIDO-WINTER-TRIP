@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOKKAIDO WINTER TRIP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Tourney:wght@700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #3d3d3d;
+            font-size: 16px;
+        }
+        
+        .hero-container {
+            position: relative;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: url('https://i.imgur.com/a1Di5XP.png');
+            background-size: cover;
+            background-position: bottom;
+        }
+        .hero-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0); 
+        }
+        .main-header {
+            position: relative;
+            padding: 20px;
+        }
+        .main-header h1 {
+            font-family: 'Tourney', sans-serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+            color: #0a4bfc;
+        }
+        .main-header p {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 1.5em;
+            margin: 10px 0 0;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            color: #0a4bfc;
+        }
+
+        .fixed-header-container {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            z-index: 1000;
+        }
+        .day-nav {
+            width: 100%;
+            padding: 10px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: flex-start;
+            gap: 8px;
+            padding: 0 15px;
+        }
+        .day-nav a {
+            padding: 8px 14px;
+            text-decoration: none;
+            color: #3498db;
+            background-color: #eaf6ff;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .day-nav a:hover, .day-nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .content-container {
+            padding: 20px;
+        }
+        .day-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            padding: 20px 25px;
+            scroll-margin-top: 80px;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 10px; 
+        }
+        .day-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #3498db;
+            line-height: 1;
+        }
+        .day-date strong { display: block; font-size: 1.2em; font-weight: 700; color: #2c3e50; }
+        .day-date span { font-size: 0.9em; color: #7f8c8d; }
+        
+        .day-card hr {
+            display: none;
+        }
+
+        .schedule-list { list-style: none; padding: 0; margin: 0; }
+        .schedule-item { display: flex; align-items: flex-start; gap: 15px; padding: 12px 0; }
+        .schedule-item:not(:last-child) { border-bottom: 1px solid #f1f3f5; }
+        .schedule-item .icon {
+            font-size: 1.5em;
+            margin-top: 3px;
+        }
+
+        .schedule-item .details { flex: 1; }
+        .schedule-item .time { font-size: 0.85em; font-weight: 500; color: #3498db; display: block; margin-bottom: 4px; }
+        .schedule-item .description { font-size: 1em; font-weight: 500; color: #3d3d3d; line-height: 1.5; }
+        .description a {
+            color: #3d3d3d;
+            text-decoration: none;
+            border-bottom: 2px solid #a0e7e5;
+            transition: background-color 0.3s;
+        }
+        .description a:hover {
+            background-color: #eaf6ff;
+        }
+        .schedule-item .notes { font-size: 0.85em; color: #7f8c8d; padding-top: 5px; line-height: 1.4; }
+        footer { text-align: center; margin-top: 30px; padding-bottom: 20px; font-size: 0.8em; color: #95a5a6; }
+    </style>
+</head>
+<body>
+
+    <header class="hero-container">
+        <div class="main-header">
+            <h1>HOKKAIDO WINTER TRIP</h1>
+            <p>2026.02.14 - 2026.02.23</p>
+        </div>
+    </header>
+
+    <div class="fixed-header-container">
+        <nav class="day-nav">
+            <div class="nav-links">
+                <a href="#day-1">Day 1</a>
+                <a href="#day-2">Day 2</a>
+                <a href="#day-3">Day 3</a>
+                <a href="#day-4">Day 4</a>
+                <a href="#day-5">Day 5</a>
+                <a href="#day-6">Day 6</a>
+                <a href="#day-7">Day 7</a>
+                <a href="#day-8">Day 8</a>
+                <a href="#day-9">Day 9</a>
+                <a href="#day-10">Day 10</a>
+                <a href="https://tenki.jp/forecast/1/" target="_blank">天氣預報</a>
+                <a href="https://share.google/a3K4drgNyIvMJFlxo" target="_blank">日圓匯率</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content-container">
+        <!-- Day 1 -->
+        <div class="day-card" id="day-1">
+            <div class="day-header">
+                <div class="day-number">1</div>
+                <div class="day-date"><strong>Day 1</strong><span>2月14日 (星期六)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">✈️</span><div class="details"><span class="time">14:20 - 19:15</span><span class="description">香港 (T1) → 東京羽田 (T3) (NH860)</span></div></li>
+                <li class="schedule-item"><span class="icon">✈️</span><div class="details"><span class="time">21:00 - 22:35</span><span class="description">東京羽田 (T2) → 新千歲 (TD) (NH4739)</span></div></li>
+                <li class="schedule-item"><span class="icon">🚆</span><div class="details"><span class="time">23:21 - 23:54</span><span class="description">新千歲 → 札幌</span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">入住: <a href="https://maps.app.goo.gl/goD6a1ZGXKB1WjM87" target="_blank">札幌大通公園SAN GRAN酒店</a></span><div class="notes">Check-in: 15:00，地點：地下街12號出口</div></div></li>
+            </ul>
+        </div>
+        <!-- Day 2 -->
+        <div class="day-card" id="day-2">
+            <div class="day-header">
+                <div class="day-number">2</div>
+                <div class="day-date"><strong>Day 2</strong><span>2月15日 (星期日)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🚇</span><div class="details"><span class="description">酒店 → <a href="https://maps.app.goo.gl/wum5L6nhyqqWVCLR7" target="_blank">札幌工廠</a> (電鐵東西線)</span><div class="notes">巴士中心前8出口</div></div></li>
+                <li class="schedule-item"><span class="icon">🚌</span><div class="details"><span class="description"><a href="https://maps.app.goo.gl/wum5L6nhyqqWVCLR7" target="_blank">札幌工廠</a> → <a href="https://maps.app.goo.gl/yXyjZZy5rcuFKE1n8" target="_blank">Ario札幌</a> (巴士 東３苗穗線)</span></div></li>
+                <li class="schedule-item"><span class="icon">🍽️</span><div class="details"><span class="time">11:00</span><span class="description">午餐: <a href="https://maps.app.goo.gl/sDkuoS8JtaAsNpPe6" target="_blank">一夜干海鮮丼</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🥩</span><div class="details"><span class="time">20:00</span><span class="description">晚餐: <a href="https://maps.app.goo.gl/pDJge3oBUvwHdCeD6" target="_blank">SAPPORO NIKUAZABU (燒肉)</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">住宿: <a href="https://maps.app.goo.gl/goD6a1ZGXKB1WjM87" target="_blank">札幌大通公園SAN GRAN酒店</a></span></div></li>
+            </ul>
+        </div>
+        <!-- Day 3 -->
+        <div class="day-card" id="day-3">
+            <div class="day-header">
+                <div class="day-number">3</div>
+                <div class="day-date"><strong>Day 3</strong><span>2月16日 (星期一)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🛍️</span><div class="details"><span class="description"><a href="https://www.facebook.com/61555874104762/posts/%E5%88%86%E4%BA%AB%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%BF%83%E7%9A%84%E5%9C%B0%E4%B8%8B%E6%AD%A5%E9%81%93%E5%9C%B0%E5%9C%96%E9%99%84%E9%9B%BB%E6%A2%AF%E4%BD%8D%E7%BD%AE%E8%88%87%E9%AB%98%E9%80%9F%E5%B7%B4%E5%A3%AB%E6%90%AD%E4%B9%98%E5%9C%B0%E5%9C%96%E4%BE%86%E6%9C%AD%E5%B9%8C%E5%B9%BE%E5%B9%B4%E5%8F%AA%E8%A6%81%E6%98%AF%E5%88%B0%E5%86%AC%E5%A4%A9%E5%B0%B1%E4%B8%80%E5%AE%9A%E6%98%AF%E5%88%A9%E7%94%A8%E5%9C%B0%E4%B8%8B%E6%AD%A5%E9%81%93%E4%B8%8D%E5%83%85%E4%B8%8D%E7%94%A8%E9%A2%A8%E5%90%B9%E6%97%A5%E6%9B%AC%E6%B7%8B%E9%9B%A8%E4%B9%9F%E6%B2%92%E6%9C%89%E5%86%AC%E5%A4%A9%E6%BB%91%E5%80%92%E7%9A%84%E5%8D%B1%E9%9A%AA%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%BF%83%E7%9A%84%E5%9C%B0%E4%B8%8B%E6%AD%A5%E9%81%93%E4%BB%A5/122216132522195803" target="_blank">地下街 Shopping (地下街指南)</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🍽️</span><div class="details"><span class="time">12:00</span><span class="description">午餐: <a href="https://maps.app.goo.gl/HqF4RQjxQHBYJHmAA" target="_blank">Sushi-Don (海鮮丼)</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🦀</span><div class="details"><span class="time">18:00</span><span class="description">晚餐: <a href="https://maps.app.goo.gl/11HoiYdewA7f2cyf7" target="_blank">蟹座 (蟹放題)</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">住宿: <a href="https://maps.app.goo.gl/goD6a1ZGXKB1WjM87" target="_blank">札幌大通公園SAN GRAN酒店</a></span><div class="notes">洗衣：6, 7樓</div></div></li>
+            </ul>
+        </div>
+        <!-- Day 4 -->
+        <div class="day-card" id="day-4">
+            <div class="day-header">
+                <div class="day-number">4</div>
+                <div class="day-date"><strong>Day 4</strong><span>2月17日 (星期二)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="time">11:00</span><span class="description">酒店 Check-out</span></div></li>
+                <li class="schedule-item"><span class="icon">🍛</span><div class="details"><span class="time">11:45</span><span class="description">午餐: <a href="https://maps.app.goo.gl/t2chSTvbmx9zgxMz5" target="_blank">Soup curry syabazo</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🚌</span><div class="details"><span class="time">13:40 - 15:23</span><span class="description">札幌 → 登別 (<a href="https://maps.app.goo.gl/ee2NTPfbVdgTUte2A" target="_blank">道南巴士2002</a>)</span><div class="notes">預約號碼: 40883687</div></div></li>
+                <li class="schedule-item"><span class="icon">♨️</span><div class="details"><span class="description">入住: <a href="https://maps.app.goo.gl/SmWLtSEgRZmSKXg39" target="_blank">第一瀧本館</a></span><div class="notes">Check-in: 14:00，可以帶泳衣泡湯</div></div></li>
+                <li class="schedule-item"><span class="icon">🍽️</span><div class="details"><span class="time">18:00</span><span class="description">酒店晚餐</span></div></li>
+            </ul>
+        </div>
+        <!-- Day 5 -->
+        <div class="day-card" id="day-5">
+            <div class="day-header">
+                <div class="day-number">5</div>
+                <div class="day-date"><strong>Day 5</strong><span>2月18日 (星期三)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🍽️</span><div class="details"><span class="time">07:00 - 09:00</span><span class="description">酒店早餐</span></div></li>
+                <li class="schedule-item"><span class="icon">🧳</span><div class="details"><span class="description">寄送行李</span><div class="notes">可以寄行李去函館酒店</div></div></li>
+                <li class="schedule-item"><span class="icon">♨️</span><div class="details"><span class="description">住宿: <a href="https://maps.app.goo.gl/SmWLtSEgRZmSKXg39" target="_blank">第一瀧本館</a></span></div></li>
+            </ul>
+        </div>
+        <!-- Day 6 -->
+        <div class="day-card" id="day-6">
+            <div class="day-header">
+                <div class="day-number">6</div>
+                <div class="day-date"><strong>Day 6</strong><span>2月19日 (星期四)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🚌</span><div class="details"><span class="time">09:03 - 09:30</span><span class="description">第一瀧本前 → 登別站</span><div class="notes">Cash only</div></div></li>
+                <li class="schedule-item"><span class="icon">🛒</span><div class="details"><span class="description"><a href="https://maps.app.goo.gl/uZAr4f6P9Tg3bvTY8" target="_blank">登別站超市買餸</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🚆</span><div class="details"><span class="time">11:00 - 13:19</span><span class="description">登別站 → 新函館北斗站 (JR 北斗特急)</span></div></li>
+                <li class="schedule-item"><span class="icon">🚗</span><div class="details"><span class="time">13:30</span><span class="description"><a href="https://maps.app.goo.gl/bW9eHAuEQCuKMshi6" target="_blank">新函館北斗站租車</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">入住: <a href="https://maps.app.goo.gl/fxnNxL1CgTBxPG9E9" target="_blank">LiVE MAX度假村函館Geenpia大沼</a></span><div class="notes">Check-in: 15:00</div></div></li>
+                <li class="schedule-item"><span class="icon">🍳</span><div class="details"><span class="description">晚餐: 自己煮</span></div></li>
+            </ul>
+        </div>
+        <!-- Day 7 -->
+        <div class="day-card" id="day-7">
+            <div class="day-header">
+                <div class="day-number">7</div>
+                <div class="day-date"><strong>Day 7</strong><span>2月20日 (星期五)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🍽️</span><div class="details"><span class="time">07:00</span><span class="description">酒店早餐</span></div></li>
+                <li class="schedule-item"><span class="icon">🚗</span><div class="details"><span class="time">16:30</span><span class="description"><a href="https://maps.app.goo.gl/bW9eHAuEQCuKMshi6" target="_blank">新函館北斗站還車</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🚆</span><div class="details"><span class="time">16:07 - 16:32</span><span class="description">新函館北斗 → 函館</span></div></li>
+                <li class="schedule-item"><span class="icon">🎆</span><div class="details"><span class="time">18:00</span><span class="description">函館花火大會</span></div></li>
+                <li class="schedule-item"><span class="icon">🚠</span><div class="details"><span class="description">函館山觀景台</span><div class="notes">巴士 (2, 3號線)</div></div></li>
+                <li class="schedule-item"><span class="icon">🍔</span><div class="details"><span class="description">晚餐: <a href="https://maps.app.goo.gl/5sLjnkxYbrQT4hfL8" target="_blank">幸運小丑漢堡</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">入住: <a href="https://maps.app.goo.gl/AxDnipUNGC8K71tf8" target="_blank">北海道函館站前柔婕閣酒店</a></span><div class="notes">Check-in: 15:00</div></div></li>
+            </ul>
+        </div>
+        <!-- Day 8 -->
+        <div class="day-card" id="day-8">
+            <div class="day-header">
+                <div class="day-number">8</div>
+                <div class="day-date"><strong>Day 8</strong><span>2月21日 (星期六)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🏯</span><div class="details"><span class="description"><a href="https://maps.app.goo.gl/fjKJEV5XowL8B4f19" target="_blank">五稜郭</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🐟</span><div class="details"><span class="description"><a href="https://maps.app.goo.gl/9Rn5gTLEueR9uqrW7" target="_blank">函館朝市</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🥩</span><div class="details"><span class="description">晚餐: <a href="https://maps.app.goo.gl/3CyJezEJrUyjmFpg6" target="_blank">大黑屋</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="description">住宿: <a href="https://maps.app.goo.gl/AxDnipUNGC8K71tf8" target="_blank">北海道函館站前柔婕閣酒店</a></span></div></li>
+            </ul>
+        </div>
+        <!-- Day 9 -->
+        <div class="day-card" id="day-9">
+            <div class="day-header">
+                <div class="day-number">9</div>
+                <div class="day-date"><strong>Day 9</strong><span>2月22日 (星期日)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">🍣</span><div class="details"><span class="time">09:00</span><span class="description"><a href="https://maps.app.goo.gl/yq6uQuxCsaf9qX1x9" target="_blank">世壱屋 (うにむらかみ)</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🛒</span><div class="details"><span class="description">超級市場</span></div></li>
+                <li class="schedule-item"><span class="icon">🍣</span><div class="details"><span class="description">午餐: <a href="https://maps.app.goo.gl/xPqdtbqizCxcVhFbA" target="_blank">根室花丸</a></span></div></li>
+                <li class="schedule-item"><span class="icon">🏨</span><div class="details"><span class="time">11:00</span><span class="description">酒店 Check-out</span></div></li>
+                <li class="schedule-item"><span class="icon">🚌</span><div class="details"><span class="time">17:20 - 17:40</span><span class="description">函館 → 機場</span></div></li>
+                <li class="schedule-item"><span class="icon">✈️</span><div class="details"><span class="time">19:05 - 20:35</span><span class="description">函館 → 東京羽田 (T2) (NH558)</span></div></li>
+            </ul>
+        </div>
+        <!-- Day 10 -->
+        <div class="day-card" id="day-10">
+            <div class="day-header">
+                <div class="day-number">10</div>
+                <div class="day-date"><strong>Day 10</strong><span>2月23日 (星期一)</span></div>
+            </div>
+            <ul class="schedule-list">
+                <li class="schedule-item"><span class="icon">✈️</span><div class="details"><span class="time">02:00 - 05:45</span><span class="description">東京羽田 (T2) → 香港 (T1) (NH813)</span></div></li>
+                <li class="schedule-item"><span class="icon">🏠</span><div class="details"><span class="description">返回溫暖的家</span></div></li>
+            </ul>
+        </div>
+        <footer>
+            <p>Generated by AI for a wonderful trip!</p>
+        </footer>
+    </div>
+
+</body>
+</html>
